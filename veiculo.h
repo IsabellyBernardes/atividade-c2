@@ -4,17 +4,20 @@
 #include <iostream>
 #include <string>
 
-// Classe base Veiculo
+
 class Veiculo {
+    //protected porque as classes filhas poderao acessar os valores
 protected:
     std::string nome;
     int num_rodas;
 
 public:
     Veiculo(const std::string& nome, int num_rodas)
-        : nome(nome), num_rodas(num_rodas) {
+        : nome(nome), num_rodas(num_rodas) { //isso aqui são os parametros do construtor
         std::cout << "Veiculo " << nome << " construido." << std::endl;
     }
+    //PORQUE USO VIRTUAL PARA DELETAR O OBJETO?
+    //Explicação do professor: assim o código sempre deletara o objeto certo
 
     virtual ~Veiculo() {
         std::cout << "Veiculo " << nome << " destruido." << std::endl;
@@ -39,7 +42,7 @@ public:
     }
 };
 
-// Classe derivada Terrestre
+
 class Terrestre : public virtual Veiculo {
 private:
     int cap_pass;
@@ -67,13 +70,15 @@ public:
     }
 };
 
-// Classe derivada Aquatico
+
 class Aquatico : public virtual Veiculo {
 private:
     float carga_max;
 
 public:
     Aquatico(const std::string& nome, int num_rodas, float carga_max = 10)
+    //o nome certo disso são parametros?
+    //sim
         : Veiculo(nome, num_rodas), carga_max(carga_max) {
         std::cout << "Veiculo aquatico " << getNome() << " construido." << std::endl;
     }
@@ -89,13 +94,13 @@ public:
     float getCargaMax() const {
         return carga_max;
     }
-
+    //AQUI MOSTRA QUE CLARAMENTE É UMA CLASSE FILHA
     void mover() override {
         std::cout << "Veiculo aquatico " << getNome() << " moveu." << std::endl;
     }
 };
 
-// Classe derivada Aereo
+//A UNICA CLASSE PAI E VEICULO
 class Aereo : public Veiculo {
 private:
     float vel_max;
@@ -123,7 +128,7 @@ public:
     }
 };
 
-// Classe Anfibio
+//DEPOIS DO : EU VOU FALO QUEM SÃO OS PAIS DA CLASSE
 class Anfibio : public Terrestre, public Aquatico {
 public:
     Anfibio(const std::string& nome)
@@ -134,7 +139,7 @@ public:
     ~Anfibio() {
         std::cout << "Veiculo anfibio " << Veiculo::getNome() << " destruido." << std::endl;
     }
-
+    //pega o metodo do pai e utiliza na classe filha
     void mover() override {
         Terrestre::mover();
         Aquatico::mover();

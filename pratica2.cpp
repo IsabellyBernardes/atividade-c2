@@ -1,11 +1,14 @@
 #include "veiculo.h"
 
 int main() {
+    //ta usando ponteiro por causa do dynamic
     Veiculo* terr = new Terrestre("VT1", 4);
     dynamic_cast<Terrestre*>(terr)->setCapacidadeMax(45);
     terr->mover();
 
     Veiculo* aqua = new Aquatico("VQ1", 0);
+    //dynamic_cast e usado para garantir que o objeto seja do tipo de destino ou parecido
+    //ele previne erros de conversao
     dynamic_cast<Aquatico*>(aqua)->setCargaMax(12.5);
     aqua->mover();
 

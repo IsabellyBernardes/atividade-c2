@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 26)
 
 add_executable(pratica02 pratica2.cpp
         veiculo.h
-        veiculo.cpp)
+)
