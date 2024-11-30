@@ -9,11 +9,15 @@ class Veiculo {
     //protected porque as classes filhas poderao acessar os valores
 protected:
     std::string nome;
-    int num_rodas;
 
 public:
+<<<<<<< HEAD
     Veiculo(const std::string& nome, int num_rodas)
         : nome(nome), num_rodas(num_rodas) { //isso aqui são os parametros do construtor
+=======
+    virtual Veiculo(const std::string& nome)
+        : nome(nome) {
+>>>>>>> f5dab5b (continuar)
         std::cout << "Veiculo " << nome << " construido." << std::endl;
     }
     //PORQUE USO VIRTUAL PARA DELETAR O OBJETO?
@@ -33,13 +37,7 @@ public:
         return nome;
     }
 
-    void setNumRodas(int num_rodas) {
-        this->num_rodas = num_rodas;
-    }
-
-    int getNumRodas() const {
-        return num_rodas;
-    }
+    
 };
 
 
@@ -48,12 +46,12 @@ private:
     int cap_pass;
 
 public:
-    Terrestre(const std::string& nome, int num_rodas, int cap_pass = 5)
-        : Veiculo(nome, num_rodas), cap_pass(cap_pass) {
+    Terrestre(const std::string& nome, int cap_pass = 5)
+        : Veiculo(nome), cap_pass(cap_pass) {
         std::cout << "Veiculo terrestre " << getNome() << " construido." << std::endl;
     }
 
-    ~Terrestre() {
+    virtual ~Terrestre() {
         std::cout << "Veiculo terrestre " << getNome() << " destruido." << std::endl;
     }
 
@@ -76,14 +74,19 @@ private:
     float carga_max;
 
 public:
+<<<<<<< HEAD
     Aquatico(const std::string& nome, int num_rodas, float carga_max = 10)
     //o nome certo disso são parametros?
     //sim
         : Veiculo(nome, num_rodas), carga_max(carga_max) {
+=======
+    Aquatico(const std::string& nome,  float carga_max = 10)
+        : Veiculo(nome), carga_max(carga_max) {
+>>>>>>> f5dab5b (continuar)
         std::cout << "Veiculo aquatico " << getNome() << " construido." << std::endl;
     }
 
-    ~Aquatico() {
+    virtual ~Aquatico() {
         std::cout << "Veiculo aquatico " << getNome() << " destruido." << std::endl;
     }
 
@@ -100,18 +103,22 @@ public:
     }
 };
 
+<<<<<<< HEAD
 //A UNICA CLASSE PAI E VEICULO
+=======
+
+>>>>>>> f5dab5b (continuar)
 class Aereo : public Veiculo {
 private:
     float vel_max;
 
 public:
-    Aereo(const std::string& nome, int num_rodas, float vel_max = 100)
-        : Veiculo(nome, num_rodas), vel_max(vel_max) {
+    Aereo(const std::string& nome, float vel_max = 100)
+        : Veiculo(nome), vel_max(vel_max) {
         std::cout << "Veiculo aereo " << getNome() << " construido." << std::endl;
     }
 
-    ~Aereo() {
+    virtual ~Aereo() {
         std::cout << "Veiculo aereo " << getNome() << " destruido." << std::endl;
     }
 
@@ -128,15 +135,19 @@ public:
     }
 };
 
+<<<<<<< HEAD
 //DEPOIS DO : EU VOU FALO QUEM SÃO OS PAIS DA CLASSE
+=======
+
+>>>>>>> f5dab5b (continuar)
 class Anfibio : public Terrestre, public Aquatico {
 public:
     Anfibio(const std::string& nome)
-        : Veiculo(nome, 0), Terrestre(nome, 0), Aquatico(nome, 0) {
+        : Veiculo(nome), Terrestre(nome), Aquatico(nome) {
         std::cout << "Veiculo anfibio " << Veiculo::getNome() << " construido." << std::endl;
     }
 
-    ~Anfibio() {
+    virtual ~Anfibio() {
         std::cout << "Veiculo anfibio " << Veiculo::getNome() << " destruido." << std::endl;
     }
     //pega o metodo do pai e utiliza na classe filha
